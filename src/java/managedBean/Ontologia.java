@@ -400,7 +400,18 @@ public class Ontologia {
         }
         Collections.sort(lista);
     }
-    /*  public void busquedaGeneral() throws IOException {
+
+    public void busquedaGeneral() throws IOException {
+        if (this.tituloAutor == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
+            return;
+        }
+     this.titulo=this.tituloAutor;
+     this.palabra=this.tituloAutor;
+     String[] busqueda = depurar();
+     List<Object[]> autores = depurarAutor();
+    /* 
      if (tituloAutor == null) {
      FacesContext context = FacesContext.getCurrentInstance();
      context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
@@ -492,7 +503,8 @@ public class Ontologia {
      String url = "Resultado.xhtml";
      FacesContext fc = FacesContext.getCurrentInstance();
      fc.getExternalContext().redirect(url);
-     }*/
+      */
+     }
 
     /**
      * Creates a new instance of Ontologia
