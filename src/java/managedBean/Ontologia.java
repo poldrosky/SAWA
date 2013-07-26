@@ -255,7 +255,12 @@ public class Ontologia {
         String buscar = "";
         return estudianteFacade.findAllJaro(this.palabra);
     }
-
+    public List<Object[]>depurarTitulo(){
+        this.titulo = this.titulo.replaceAll("'", "");
+        List<Object>titulosList=new ArrayList<Object>();
+        //for(int i=0;i<)
+        return null;
+    }
     public String[] depurar() {
         this.titulo = this.titulo.replaceAll("'", "");
         String[] busquedaTitulo = this.titulo.split(" ");
@@ -411,6 +416,7 @@ public class Ontologia {
      this.palabra=this.tituloAutor;
      String[] busqueda = depurar();
      List<Object[]> autores = depurarAutor();
+     
     /* 
      if (tituloAutor == null) {
      FacesContext context = FacesContext.getCurrentInstance();
