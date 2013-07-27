@@ -261,6 +261,7 @@ public class Ontologia {
         //for(int i=0;i<)
         return null;
     }
+
     public String[] depurarGeneral() {
         this.tituloAutor = this.tituloAutor.replaceAll("'", "");
         String[] busquedaTitulo = this.tituloAutor.split(" ");
@@ -268,10 +269,17 @@ public class Ontologia {
         for (int i = 0; i < busquedaTitulo.length; i++) {
             if (this.vocabularioFacadel.findAllStopWords(busquedaTitulo[i]) == null) {
                 List<Object[]> listaWords = this.vocabularioFacadel.findAllJaroWords(busquedaTitulo[i]);
-                buscar=buscar+" "+listaWords.get(0)[0].toString();
+                System.out.println("Nulos"+listaWords.toString());
+                if (!listaWords.isEmpty()) {
+                    buscar = buscar + " " + listaWords.get(0)[0].toString();
+                }
             }
         }
-        return buscar.split(" ");
+        if (!buscar.equals("")) {
+            return buscar.split(" ");
+        } else {
+            return null;
+        }
     }
     public String[] depurar() {
         this.titulo = this.titulo.replaceAll("'", "");
@@ -280,16 +288,32 @@ public class Ontologia {
         for (int i = 0; i < busquedaTitulo.length; i++) {
             if (this.vocabularioFacadel.findAllStopWords(busquedaTitulo[i]) == null) {
                 List<Object[]> listaWords = this.vocabularioFacadel.findAllJaroWords(busquedaTitulo[i]);
-                for (int j = 0; j < listaWords.size(); j++) {
-                    buscar = buscar + " " + listaWords.get(j)[0].toString();
+                if (!listaWords.isEmpty()) {
+                    for (int j = 0; j < listaWords.size(); j++) {
+                        buscar = buscar + " " + listaWords.get(j)[0].toString();
+                    }
                 }
             }
         }
-        return buscar.split(" ");
+        if (!buscar.equals("")) {
+            return buscar.split(" ");
+        } else {
+            return null;
+        }
     }
 
     public void busquedaTitulo() throws IOException {
+        if (this.titulo == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
+            return;
+        }
         String[] busqueda = depurar();
+        if(busqueda==null){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
+            return;
+        }
         String filtro = "";
         this.palabra = "";
         for (int i = 1; i < busqueda.length; i++) {
@@ -425,6 +449,11 @@ public class Ontologia {
             return;
         }
         String[] words = depurarGeneral();
+        if (words == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
+            return;
+        }
         String filtro = "";
         String filtro1 = "";
         String filtro2 = "";
