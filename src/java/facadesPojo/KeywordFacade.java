@@ -48,30 +48,14 @@ public class KeywordFacade extends AbstractFacade<Keyword> {
           try {
             javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
             cq.select(cq.from(Keyword.class));
-            return getEntityManager().createNativeQuery("select distinct pal ,"
+              return getEntityManager().createNativeQuery("select pal ,"
                     + " jarowinkler((pal) ,'" + query + "') as aceptacion"
-                    + " from "
-                    + " ("
-                    + " select "
-                    + " nombres as pal,jarowinkler(nombres,'"+query+"') as aceptacion "
-                    + " from"
-                    + " estudiante"
-                    + " where"
-                    + " jarowinkler(nombres,'"+query+"')>0.5"
-                    + " union"
-                    + " select "
-                    + " apellidos as pal,jarowinkler(apellidos,'"+query+"') as aceptacion "
-                    + " from "
-                    + " estudiante "
-                    + " where "
-                    + " jarowinkler(apellidos,'"+query+"')>0.5"
-                    + " union"
-                    + " select pal,jarowinkler((pal) ,'"+query+"') as aceptacion"
-                    + "  from (select distinct palabra as pal from keyword"
+                    + " from (select distinct palabra as pal from keyword"
                     + " union"
                     + " select distinct meaning as pal from significado natural join sinonimo"
-                    + "  where id_word in(select id_word from sinonimo_keyword))as sin"
-                    + " )as tabla order by aceptacion desc").getResultList();
+                    + " where id_word in(select id_word from sinonimo_keyword)"
+                    + " ) as keyword where"
+                    + " jarowinkler(pal,'" + query + "')>0.9 order by aceptacion desc").getResultList();
         } catch (Exception e) {
             System.out.println(e.toString());
             return null;

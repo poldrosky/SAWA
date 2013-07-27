@@ -261,6 +261,18 @@ public class Ontologia {
         //for(int i=0;i<)
         return null;
     }
+    public String[] depurarGeneral() {
+        this.tituloAutor = this.tituloAutor.replaceAll("'", "");
+        String[] busquedaTitulo = this.tituloAutor.split(" ");
+        String buscar = "";
+        for (int i = 0; i < busquedaTitulo.length; i++) {
+            if (this.vocabularioFacadel.findAllStopWords(busquedaTitulo[i]) == null) {
+                List<Object[]> listaWords = this.vocabularioFacadel.findAllJaroWords(busquedaTitulo[i]);
+                buscar=buscar+" "+listaWords.get(0)[0].toString();
+            }
+        }
+        return buscar.split(" ");
+    }
     public String[] depurar() {
         this.titulo = this.titulo.replaceAll("'", "");
         String[] busquedaTitulo = this.titulo.split(" ");
@@ -412,105 +424,93 @@ public class Ontologia {
             context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
             return;
         }
-     this.titulo=this.tituloAutor;
-     this.palabra=this.tituloAutor;
-     String[] busqueda = depurar();
-     List<Object[]> autores = depurarAutor();
-     
-    /* 
-     if (tituloAutor == null) {
-     FacesContext context = FacesContext.getCurrentInstance();
-     context.addMessage(null, new FacesMessage("No Encontraron resultados para su busqueda", ""));
-     return;
-     }
-     String filtro = "";
-     //eliminar palabras muertas
-     this.palabra = "";
-     String filtro1 = "";
-     String filtro2 = "";
-     for (int i = 0; i < tituloAutor.size(); i++) {
-     this.palabra = this.palabra + " " + tituloAutor.get(i).toString();
-     if (i != tituloAutor.size() - 1) {
-     filtro = filtro + "REGEX(str(?sin)," + "\"" + tituloAutor.get(i).toString() + "\",\"i\")||";
-     } else {
-     filtro = filtro + "REGEX(str(?sin)," + "\"" + tituloAutor.get(i).toString() + "\",\"i\")";
-     }
-     }
-     this.palabra = this.palabra.substring(1, this.palabra.length());
-     String words[] = this.palabra.split(" ");
-     System.out.println(this.palabra);
-     for (int i = 0; i < words.length; i++) {
-     if (i != words.length - 1) {
-     filtro2 = filtro2 + "REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
-     + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\")||";
-     filtro1 = filtro1 + "(REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
-     + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\"))&&";
-     } else {
-     filtro2 = filtro2 + "REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
-     + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\")";
-     filtro1 = filtro1 + "(REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
-     + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\"))";
-     }
-     }
-     String consulta = "PREFIX po1:<http://www.owl-ontologies.com/TesisGrado.owl#>  "
-     + "select distinct "
-     + "?id_tg?Titulo?Signatura_Topografica?resumen?Trabajo_grado"
-     + " where{ "
-     + "{"
-     + "?Trabajo_grado po1:Es_realizado ?autor ."
-     + "?Trabajo_grado po1:titulo?Titulo."
-     + "?Trabajo_grado po1:id_trabajo?id_tg."
-     + "?Trabajo_grado po1:resumen?resumen."
-     + "?Trabajo_grado po1:signatura_topografica?Signatura_Topografica."
-     + "?autor po1:nombre_persona?nom."
-     + "?autor po1:apellido_persona?ape."
-     + "FILTER ("
-     + filtro1
-     + ")"
-     + "}"
-     + "UNION"
-     + "{"
-     + "?Trabajo_grado po1:Es_realizado ?autor ."
-     + "?Trabajo_grado po1:titulo?Titulo."
-     + "?Trabajo_grado po1:id_trabajo?id_tg."
-     + "?Trabajo_grado po1:resumen?resumen."
-     + "?Trabajo_grado po1:signatura_topografica?Signatura_Topografica."
-     + "?autor po1:nombre_persona?nom."
-     + "?autor po1:apellido_persona?ape."
-     + "FILTER ("
-     + filtro2
-     + ")"
-     + "}"
-     + "}";
-     String consulta1 = "PREFIX po1:<http://www.owl-ontologies.com/TesisGrado.owl#>  "
-     + "select distinct "
-     + "?id_tg?Titulo?Signatura_Topografica?resumen?Trabajo_grado"
-     + " where{"
-     + "?Trabajo_grado po1:tiene ?keyword ."
-     + "?Trabajo_grado po1:titulo?Titulo."
-     + "?Trabajo_grado po1:id_trabajo?id_tg."
-     + "?Trabajo_grado po1:resumen?resumen."
-     + "?Trabajo_grado po1:signatura_topografica?Signatura_Topografica."
-     + "?keyword po1:sinonimo ?sin."
-     + "FILTER ("
-     + filtro
-     + ")"
-     + "}order by ?Titulo";
-     this.busqueda = this.palabra;
-     this.tituloAutor = new ArrayList<Object>();
-     this.lista = new ArrayList<Tesis>();
-     prepararLista(consulta);
-     prepararLista(consulta1);
-     if (lista.isEmpty()) {
-     this.resultados = "No se encontraron resultados para: " + this.busqueda;
-     } else {
-     this.resultados = "Resultados encontrados para: " + this.busqueda;
-     }
-     String url = "Resultado.xhtml";
-     FacesContext fc = FacesContext.getCurrentInstance();
-     fc.getExternalContext().redirect(url);
-      */
-     }
+        String[] words = depurarGeneral();
+        String filtro = "";
+        String filtro1 = "";
+        String filtro2 = "";
+        this.palabra="";
+        for (int i = 1; i < words.length; i++) {
+            this.palabra = this.palabra + " " + words[i];
+            if (i != words.length - 1) {
+                filtro = filtro + "REGEX(str(?sin)," + "\"" + words[i] + "\",\"i\")||";
+            } else {
+                filtro = filtro + "REGEX(str(?sin)," + "\"" + words[i] + "\",\"i\")";
+            }
+        }
+        this.palabra = this.palabra.substring(1, this.palabra.length());
+        for (int i = 0; i < words.length; i++) {
+            if (i != words.length - 1) {
+                filtro2 = filtro2 + "REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
+                        + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\")||";
+                filtro1 = filtro1 + "(REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
+                        + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\"))&&";
+            } else {
+                filtro2 = filtro2 + "REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
+                        + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\")";
+                filtro1 = filtro1 + "(REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
+                        + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\"))";
+            }
+        }
+        String consulta = "PREFIX po1:<http://www.owl-ontologies.com/TesisGrado.owl#>  "
+                + "select distinct "
+                + "?id_tg?Titulo?Signatura_Topografica?resumen?Trabajo_grado"
+                + " where{ "
+                + "{"
+                + "?Trabajo_grado po1:Es_realizado ?autor ."
+                + "?Trabajo_grado po1:titulo?Titulo."
+                + "?Trabajo_grado po1:id_trabajo?id_tg."
+                + "?Trabajo_grado po1:resumen?resumen."
+                + "?Trabajo_grado po1:signatura_topografica?Signatura_Topografica."
+                + "?autor po1:nombre_persona?nom."
+                + "?autor po1:apellido_persona?ape."
+                + "FILTER ("
+                + filtro1
+                + ")"
+                + "}"
+                + "UNION"
+                + "{"
+                + "?Trabajo_grado po1:Es_realizado ?autor ."
+                + "?Trabajo_grado po1:titulo?Titulo."
+                + "?Trabajo_grado po1:id_trabajo?id_tg."
+                + "?Trabajo_grado po1:resumen?resumen."
+                + "?Trabajo_grado po1:signatura_topografica?Signatura_Topografica."
+                + "?autor po1:nombre_persona?nom."
+                + "?autor po1:apellido_persona?ape."
+                + "FILTER ("
+                + filtro2
+                + ")"
+                + "}"
+                + "}";
+        String consulta1 = "PREFIX po1:<http://www.owl-ontologies.com/TesisGrado.owl#>  \n"
+                + "select  \n"
+                + "?id_tg?Titulo?Signatura_Topografica?resumen?Trabajo_grado (count(?id_tg)as ?c)\n"
+                + " where{\n"
+                + "?Trabajo_grado po1:tiene ?keyword .\n"
+                + "?Trabajo_grado po1:titulo?Titulo.\n"
+                + "?Trabajo_grado po1:id_trabajo?id_tg.\n"
+                + "?Trabajo_grado po1:resumen?resumen.\n"
+                + "?Trabajo_grado po1:signatura_topografica?Signatura_Topografica.\n"
+                + "?keyword po1:sinonimo ?sin.\n"
+                + "FILTER (\n"
+                + filtro
+                + ")\n"
+                + "}\n"
+                + "group by ?id_tg?Titulo?Signatura_Topografica?resumen?Trabajo_grado";
+        this.busqueda = this.palabra;
+        this.tituloAutor ="";
+        this.lista = new ArrayList<Tesis>();
+        prepararLista(consulta);
+        prepararLista1(consulta1);
+        if (lista.isEmpty()) {
+            this.resultados = "No se encontraron resultados para: " + this.busqueda;
+        } else {
+            this.resultados = "Resultados encontrados para: " + this.busqueda;
+        }
+        String url = "Resultado.xhtml";
+        FacesContext fc = FacesContext.getCurrentInstance();
+        fc.getExternalContext().redirect(url);
+
+    }
 
     /**
      * Creates a new instance of Ontologia
