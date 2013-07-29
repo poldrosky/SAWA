@@ -15,7 +15,7 @@
         </h:head>
 
         <h:body style="background-color: #dddddd">
-          <h:form>
+            <h:form>
                 <center>
                     <p:layout style="width: 80%;height:650px ">
 
@@ -57,66 +57,66 @@
 
                                         <p:tab title="GENERAL">
                                             <center>
-                                                
-                                                    <h:panelGrid columns="2">
-                                                        <h:outputLabel 
-                                                            value="Buscar"
-                                                            styleClass="requiredLbl"/>
-                                                        <p:autoComplete  value="#{ontologia.tituloAutor}"
-                                                                         label="Buscar"
-                                                                         size="50"
-                                                                         completeMethod="#{ontologia.completeGeneral}"                                                                   
-                                                                         />
-                                                    </h:panelGrid>
-                                                    <p:commandButton
+
+                                                <h:panelGrid columns="2">
+                                                    <h:outputLabel 
                                                         value="Buscar"
-                                                        ajax="false"
-                                                        actionListener="#{ontologia.busquedaGeneral}"/>
-                                                
+                                                        styleClass="requiredLbl"/>
+                                                    <p:autoComplete  value="#{ontologia.tituloAutor}"
+                                                                     label="Buscar"
+                                                                     size="45"
+                                                                     completeMethod="#{ontologia.completeGeneral}"                                                                   
+                                                                     />
+                                                </h:panelGrid>
+                                                <p:commandButton
+                                                    value="Buscar"
+                                                    ajax="false"
+                                                    actionListener="#{ontologia.busquedaGeneral}"/>
+
                                             </center> 
                                         </p:tab>
 
                                         <p:tab title="TITULO">
                                             <center>
-                                              
-                                                    <h:panelGrid columns="2">
-                                                        <h:outputLabel 
-                                                            value="Buscar"
-                                                            styleClass="requiredLbl"/>
-                                                        <p:autoComplete  value="#{ontologia.titulo}"
-                                                                         label="Buscar"
-                                                                         size="50"
-                                                                         completeMethod="#{ontologia.completeTitulo}"
-                                                                       
-                                                                         />
-                                                    </h:panelGrid>
-                                                    <p:commandButton
+
+                                                <h:panelGrid columns="2">
+                                                    <h:outputLabel 
                                                         value="Buscar"
-                                                        ajax="false"
-                                                        actionListener="#{ontologia.busquedaTitulo}"/>
-                                                
+                                                        styleClass="requiredLbl"/>
+                                                    <p:autoComplete  value="#{ontologia.titulo}"
+                                                                     label="Buscar"
+                                                                     size="45"
+                                                                     completeMethod="#{ontologia.completeTitulo}"
+
+                                                                     />
+                                                </h:panelGrid>
+                                                <p:commandButton
+                                                    value="Buscar"
+                                                    ajax="false"
+                                                    actionListener="#{ontologia.busquedaTitulo}"/>
+
                                             </center>  
                                         </p:tab>
 
                                         <p:tab title="AUTOR">
                                             <center>
-                                                
 
-                                                    <h:panelGrid columns="2">
-                                                        <h:outputLabel 
-                                                            value="Buscar"
-                                                            styleClass="requiredLbl"/>
-                                                        <p:autoComplete  value="#{ontologia.palabra}"
-                                                                         label="Buscar"
-                                                                         size="40"
-                                                                         completeMethod="#{ontologia.complete}"
-                                                                         />
-                                                    </h:panelGrid>
-                                                    <p:commandButton
+
+                                                <h:panelGrid columns="2">
+                                                    <h:outputLabel 
                                                         value="Buscar"
-                                                        actionListener="#{ontologia.busquedaAutor}"
-                                                        ajax="false"/>
-                                               
+                                                        styleClass="requiredLbl"/>
+                                                    <p:autoComplete  value="#{ontologia.palabra}"
+                                                                     label="Buscar"
+                                                                     size="45"
+                                                                     completeMethod="#{ontologia.complete}"
+                                                                     />
+                                                </h:panelGrid>
+                                                <p:commandButton
+                                                    value="Buscar"
+                                                    actionListener="#{ontologia.busquedaAutor}"
+                                                    ajax="false"/>
+
                                             </center>
                                         </p:tab>
                                     </p:tabView>
@@ -126,8 +126,8 @@
 
                     </p:layout>
                 </center>
-                </h:form>
-            
+            </h:form>
+
         </h:body>
 
     </f:view>
