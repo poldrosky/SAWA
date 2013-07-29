@@ -68,9 +68,12 @@ public class Tesis implements Comparable<Tesis> {
     
     @Override
     public int compareTo(Tesis t) {
-        String cad1=""+this.getRanking();
-        String cad2=""+t.getRanking();
-        return cad2.compareTo(cad1);
-      
+        return t.getRanking()-this.getRanking();
+      /*  if(this.getRanking()<t.getRanking()){
+            return 0;
+        }else{
+            return -1;
+        }*/
+           
     }
 }

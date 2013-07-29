@@ -3875,6 +3875,12 @@
     <describen rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg108"/>
     <significado rdf:datatype="http://www.w3.org/2001/XMLSchema#string">afiliado</significado>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/TesisGrado.owl#ubic">
+    <describen rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg281"/>
+    <significado rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ubicación</significado>
+    <sinonimo>ubicación</sinonimo>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#Palabra_clave"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/TesisGrado.owl#funcion">
     <describen rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg210"/>
     <significado rdf:datatype="http://www.w3.org/2001/XMLSchema#string">funcionamiento</significado>
@@ -7239,8 +7245,10 @@ V761</signatura_topografica>
     <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#atlas"/>
     <id_trabajo rdf:datatype="http://www.w3.org/2001/XMLSchema#int">281</id_trabajo>
     <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#hibr"/>
+    <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#ubic"/>
     <fecha_sustentacion rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2008-05-12</fecha_sustentacion>
     <Es_realizado rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#E_CARLOS_ERNESTO_ARTEAGA_NOGUERA"/>
+    <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#georreferenci"/>
     <Es_realizado rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#E_MARIO_RAUL_ERASO_ORJUELA"/>
     <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#herramient"/>
     <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#web"/>
@@ -7250,6 +7258,7 @@ V761</signatura_topografica>
     <Es_dirigido rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#D_SILVIO_RICARDO_TIMARAN_PEREIRA"/>
     <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#desarroll"/>
     <Es_calificado rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#D_GIOVANNI_ALBEIRO_HERNANDEZ_PANTOJA"/>
+    <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#localiz"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#Trabajo_grado"/>
     <tiene rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#cartograf"/>
     <Se_inscribe rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#SOFTWARE Y MANEJO DE INFORMACION"/>
@@ -9604,6 +9613,12 @@ V761</signatura_topografica>
     <identificacion_persona rdf:datatype="http://www.w3.org/2001/XMLSchema#string">101</identificacion_persona>
     <Califica rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg130"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#Docente"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/TesisGrado.owl#localiz">
+    <describen rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg281"/>
+    <significado rdf:datatype="http://www.w3.org/2001/XMLSchema#string">localización</significado>
+    <sinonimo>localización</sinonimo>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#Palabra_clave"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/TesisGrado.owl#presupuest">
     <describen rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg183"/>
@@ -15224,6 +15239,13 @@ M772S</signatura_topografica>
     <apellido_persona rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ARTEAGA NOGUERA</apellido_persona>
     <nombre_persona rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CARLOS ERNESTO</nombre_persona>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#Estudiante"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/TesisGrado.owl#georreferenci">
+    <significado rdf:datatype="http://www.w3.org/2001/XMLSchema#string">georreferenciación</significado>
+    <describen rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#tg281"/>
+    <sinonimo>georreferenciación</sinonimo>
+    <sinonimo>georreferenciar</sinonimo>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/TesisGrado.owl#Palabra_clave"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/TesisGrado.owl#E_EINER_ALEXIS_VILLOTA_REINA">
     <apellido_persona rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VILLOTA REINA</apellido_persona>

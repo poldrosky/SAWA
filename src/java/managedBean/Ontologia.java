@@ -528,8 +528,8 @@ public class Ontologia {
         this.busqueda = this.palabra;
         this.tituloAutor ="";
         this.lista = new ArrayList<Tesis>();
-        prepararLista(consulta);
         prepararLista1(consulta1);
+        prepararLista(consulta);
         if (lista.isEmpty()) {
             this.resultados = "No se encontraron resultados para: " + this.busqueda;
         } else {
