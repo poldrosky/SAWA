@@ -18,8 +18,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -28,7 +28,7 @@ import javax.servlet.ServletContext;
  * @author mateo
  */
 @ManagedBean(name = "ontologia")
-@SessionScoped
+@ApplicationScoped
 public class Ontologia {
 
     String titulo;
