@@ -467,7 +467,7 @@ public class Ontologia {
             }
         }
         this.palabra = this.palabra.substring(1, this.palabra.length());
-        for (int i = 0; i < words.length; i++) {
+        for (int i = 1; i < words.length; i++) {
             if (i != words.length - 1) {
                 filtro2 = filtro2 + "REGEX(str(?nom)," + "\"" + words[i] + "\",\"i\")||"
                         + "REGEX(str(?ape)," + "\"" + words[i] + "\",\"i\")||";
