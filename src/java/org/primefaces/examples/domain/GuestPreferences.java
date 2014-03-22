@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.primefaces.examples.domain;
 
-/**
- *
- * @author mateo
- */
 /*
  * Copyright 2009 Prime Technology.
  *
@@ -23,6 +15,7 @@ package org.primefaces.examples.domain;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 import java.io.Serializable;
 import java.util.Map;
 import javax.faces.context.FacesContext;
