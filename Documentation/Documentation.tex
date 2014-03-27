@@ -1,0 +1,120 @@
+\documentclass[bsc,letterpaper,12pt]{csthesis}
+%\documentclass[letter,12pt,twoside]{csthesis}  para imprimir de lado y lado
+
+
+\paperwidth = 21.6cm		% Tamaño de la hoja
+\paperheight = 27.9cm
+
+%Margenes horizontales
+\hoffset = -2.54cm		% Se elimna el offset horizontal
+\oddsidemargin = 4cm
+\evensidemargin = 2cm
+\textwidth = 15.6cm
+
+%Margenes verticales
+\voffset = 0.46cm
+\topmargin = 0cm
+\headheight = 0cm
+\headsep = 0cm
+\textheight = 21.9cm
+\footskip = 1.2cm
+
+
+\usepackage[spanish]{babel}     % Idioma Capitulos y demas
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{cc/CreativeCommons}  %Licencia
+
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{moreverb}
+\let\verbatiminput=\verbatimtabinput
+\def\verbatimtabsize{8}  % Tabulación en verbatim
+
+% Paquete para el manejo de hipervinculos
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black, urlcolor=black, filecolor=black]{hyperref}
+
+% Paquete para el manejo de tablas
+\usepackage{supertabular}
+\usepackage{tabularx}
+
+% Paquete para apendices
+\usepackage{appendix}
+
+% Paquetes para simbolos
+%\usepackage{mathcomp}
+%\usepackage{latexsym}
+\usepackage{pifont}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\usepackage{colortbl}
+\usepackage{multicol} 
+\usepackage{booktabs}
+
+% Manejo de imagenes PDF y EPS
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+\pdffalse % we are not running PDFLaTeX
+\else
+\pdfoutput=1 % we are running PDFLaTeX
+\pdftrue
+\fi
+
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+
+\ifpdf
+\DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+\else
+\DeclareGraphicsExtensions{.eps, .jpg}
+\fi
+
+% Sangria de comienzo de parrafo
+\setlength{\parindent}{0cm}
+% Espacio vertical entre dos parrfos
+\setlength{\parskip}{0.3cm}
+
+% Definir el nombre de listas
+\addto\captionsspanish{%
+  \def\prefacename{Prefacio}%
+  \def\refname{Referencias}%
+  \def\abstractname{RESUMEN}%
+  \def\bibname{Bibliograf\'ia}%
+  \def\chaptername{Cap\'{\i}tulo}%
+  \def\listfigurename{LISTA DE FIGURAS}%
+  \def\listtablename{LISTA DE CUADROS}%
+  \def\indexname{\'Indice alfab\'etico}%
+  \def\figurename{Figura}%
+  \def\tablename{Tabla}%
+  \def\partname{Parte}%
+  \def\enclname{Adjunto}%
+  \def\ccname{Copia a}%
+  \def\headtoname{A}%
+  \def\pagename{P\'agina}%
+  \def\seename{v\'ease}%
+  \def\alsoname{v\'ease tambi\'en}%
+  \def\proofname{Demostraci\'on}%
+  \def\glossaryname{GLOSARIO}}%
+  \def\appendixname{Ap\'endices}%
+  \def\appendixtocname{Ap\'endices}%
+  \def\appendixpagename{Ap\'endices}%
+  \addto\captionsspanish{\def\contentsname{CONTENIDO}}%
+
+
+% Inico del documento
+\begin{document}
+\pagestyle{empty}% Sin número de página
+\input{front}
+\input{license}
+\tableofcontents
+\input{install}
+
+ 
+
+\end{document}
+
